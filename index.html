@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>-*Prototypes Handson *-</h1>
+    <hr>
+    <p>Q1.Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype</p>
+   <pre>
+    const grandfather ={
+        sayhello:function(){
+            console.log("hello gfather");
+        }
+    }
+    const father=Object.create(grandfather);
+    father.hello=function(){
+        console.log("hi father");
+    }
+    const you=Object.create(father);
+    you.hi=function(){
+        console.log("hey buddy");
+    }
+    you.sayhello();
+    you.hello();
+    father.sayhello();
+    you.hi(); 
+    </pre>
+    <h3>OUTPUT:</h3>
+    <pre class="ans">
+        hello gfather
+        hi father
+        hello gfather
+        hey buddy
+    </pre>
+    <hr>
+    <p>Q3.Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays</p>
+     <pre>
+        Array.prototype.calculateSum = function() {
+            var sum = 0;
+            for (var i = 0; i < this.length; i++) {
+              sum += this[i];
+            }
+            return sum;
+          };
+          
+          // Creating multiple arrays
+          var array1 = [1, 2, 3, 4, 5];
+          var array2 = [10, 20, 30];
+          var array3 = [2, 4, 6, 8, 10, 12];
+          
+          // Calculating the sum using the method from the Array prototype
+          var sum1 = array1.calculateSum();
+          var sum2 = array2.calculateSum();
+          var sum3 = array3.calculateSum();
+          
+          console.log(sum1); 
+          console.log(sum2); 
+          console.log(sum3); 
+     </pre>
+    <h3>OUTPUT:</h3>
+     <pre class="ans">
+        15
+        60
+        42
+     </pre>
+    <hr>
+    <p>Q4.Write a JavaScript function to retrieve all the names of object's own and inherited properties.</p>
+    <pre>
+        function getAllPropertyNames(obj) {
+            var propertyNames = [];
+          
+            // Retrieve own property names
+            for (var prop in obj) {
+              if (obj.hasOwnProperty(prop)) {
+                propertyNames.push(prop);
+              }
+            }
+          
+            // Retrieve inherited property names
+            var prototype = Object.getPrototypeOf(obj);
+            if (prototype !== null) {
+              var inheritedPropertyNames = getAllPropertyNames(prototype);
+              propertyNames = propertyNames.concat(inheritedPropertyNames);
+            }
+          
+            return propertyNames;
+          }
+          
+          // Example usage
+          var obj = {
+            name: "John",
+            age: 30
+          };
+          
+          function Person() {
+            this.gender = "Male";
+          }
+          Person.prototype = obj;
+          
+          var person = new Person();
+          person.city = "New York";
+          
+          var propertyNames = getAllPropertyNames(person);
+          console.log(propertyNames);
+          
+    </pre>
+    <h3>OUTPUT:</h3>
+    <pre class="ans">
+        [ 'gender', 'city', 'name', 'age' ]
+    </pre>
+</body>
+</html>

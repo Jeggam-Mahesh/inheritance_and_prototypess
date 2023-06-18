@@ -1,0 +1,22 @@
+h3{
+   
+    color: brown;
+}
+body{
+    background-color: bisque;
+}
+h1{
+    text-align: center;
+    color: darkgreen;
+}
+p{
+    font-size: larger;
+    font-weight: bold;
+}
+pre{
+    color: blue;
+}
+.ans{
+    font-size: x-large;
+    color: darkslateblue;
+}
